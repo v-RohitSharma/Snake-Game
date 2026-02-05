@@ -1,17 +1,69 @@
+# Snake Game
+
+A fun Snake game built with React, TypeScript, and Vite. The snake can wrap around the borders instead of hitting walls!
+
+## Features
+
+- Classic Snake gameplay
+- Wrap-around borders (snake passes through walls)
+- Responsive design
+- Built with modern React and TypeScript
+
+## Development
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development Server
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Tests
+
+```bash
+npm test
+```
+
+## Deployment Options
+
+### Option 1: GitHub Pages (Current - Recommended) ✅
+**Perfect for static games like Snake!**
+- Free hosting
+- No server needed
+- Fast loading
+- **Your live game:** https://v-rohitsharma.github.io/Snake-Game/
+
+### Option 2: Docker Container 🚢
+**For cloud platforms that support containers:**
+- Heroku, Railway, Render, AWS, etc.
+- More flexible but more complex
+- Requires paid hosting for production
+
+**You can only use ONE deployment method at a time:**
+- GitHub Pages = Static files only
+- Docker = Container with web server
+
+**Current choice: GitHub Pages** (best for your Snake game!)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
 
 ## Expanding the ESLint configuration
 
