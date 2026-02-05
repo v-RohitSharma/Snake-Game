@@ -22,10 +22,11 @@ export function stepSnake(prev: Point[], dir: Direction, food: Point): { snake: 
   else if (dir === 'UP') newHead = [head[0] - 1, head[1]];
   else /* DOWN */ newHead = [head[0] + 1, head[1]];
 
-  // wall collision
-  if (newHead[0] < 0 || newHead[0] >= GRID || newHead[1] < 0 || newHead[1] >= GRID) {
-    return { snake: prev, ate: false, collision: true };
-  }
+  // wrap around borders
+  if (newHead[0] < 0) newHead[0] = GRID - 1;
+  else if (newHead[0] >= GRID) newHead[0] = 0;
+  if (newHead[1] < 0) newHead[1] = GRID - 1;
+  else if (newHead[1] >= GRID) newHead[1] = 0;
 
   const occupied = new Set(prev.map(keyOf));
   const tail = prev[prev.length - 1];

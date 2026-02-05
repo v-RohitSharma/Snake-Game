@@ -21,10 +21,32 @@ describe('stepSnake', () => {
     expect(next[0]).toEqual([0, 2]);
   });
 
-  it('detects wall collision', () => {
+  it('wraps around borders', () => {
     const snake: Point[] = [[0, 9], [0, 8]];
-    const { collision } = stepSnake(snake, 'RIGHT', [5, 5]);
-    expect(collision).toBe(true);
+    const { snake: next, collision } = stepSnake(snake, 'RIGHT', [5, 5]);
+    expect(collision).toBe(false);
+    expect(next[0]).toEqual([0, 0]); // wrapped from right edge to left
+  });
+
+  it('wraps around left border', () => {
+    const snake: Point[] = [[5, 0], [5, 1]];
+    const { snake: next, collision } = stepSnake(snake, 'LEFT', [5, 5]);
+    expect(collision).toBe(false);
+    expect(next[0]).toEqual([5, 9]); // wrapped from left edge to right
+  });
+
+  it('wraps around top border', () => {
+    const snake: Point[] = [[0, 5], [1, 5]];
+    const { snake: next, collision } = stepSnake(snake, 'UP', [5, 5]);
+    expect(collision).toBe(false);
+    expect(next[0]).toEqual([9, 5]); // wrapped from top to bottom
+  });
+
+  it('wraps around bottom border', () => {
+    const snake: Point[] = [[9, 5], [8, 5]];
+    const { snake: next, collision } = stepSnake(snake, 'DOWN', [5, 5]);
+    expect(collision).toBe(false);
+    expect(next[0]).toEqual([0, 5]); // wrapped from bottom to top
   });
 
   it('detects self collision', () => {
