@@ -1,20 +1,21 @@
 export type Point = [number, number];
 export type Direction = 'RIGHT' | 'LEFT' | 'UP' | 'DOWN';
 
-export const GRID = 10;
+export const CLASSIC_GRID = 10;
+export const LARGE_GRID = 20;
 export const keyOf = (p: Point) => `${p[0]},${p[1]}`;
 
-export function randPointExcluding(exclude: Set<string>): Point {
-  const max = GRID * GRID;
+export function randPointExcluding(exclude: Set<string>, gridSize: number = CLASSIC_GRID): Point {
+  const max = gridSize * gridSize;
   if (exclude.size >= max) throw new Error('No available points to place food');
   while (true) {
-    const p: Point = [Math.floor(Math.random() * GRID), Math.floor(Math.random() * GRID)];
+    const p: Point = [Math.floor(Math.random() * gridSize), Math.floor(Math.random() * gridSize)];
     const k = keyOf(p);
     if (!exclude.has(k)) return p;
   }
 }
 
-export function stepSnake(prev: Point[], dir: Direction, food: Point): { snake: Point[]; ate: boolean; collision: boolean } {
+export function stepSnake(prev: Point[], dir: Direction, food: Point, gridSize: number = CLASSIC_GRID): { snake: Point[]; ate: boolean; collision: boolean } {
   const head = prev[0];
   let newHead: Point;
   if (dir === 'RIGHT') newHead = [head[0], head[1] + 1];
@@ -23,10 +24,10 @@ export function stepSnake(prev: Point[], dir: Direction, food: Point): { snake: 
   else /* DOWN */ newHead = [head[0] + 1, head[1]];
 
   // wrap around borders
-  if (newHead[0] < 0) newHead[0] = GRID - 1;
-  else if (newHead[0] >= GRID) newHead[0] = 0;
-  if (newHead[1] < 0) newHead[1] = GRID - 1;
-  else if (newHead[1] >= GRID) newHead[1] = 0;
+  if (newHead[0] < 0) newHead[0] = gridSize - 1;
+  else if (newHead[0] >= gridSize) newHead[0] = 0;
+  if (newHead[1] < 0) newHead[1] = gridSize - 1;
+  else if (newHead[1] >= gridSize) newHead[1] = 0;
 
   const occupied = new Set(prev.map(keyOf));
   const tail = prev[prev.length - 1];

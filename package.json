@@ -20,6 +20,8 @@
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.58.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
@@ -36,11 +38,5 @@
     "typescript-eslint": "^8.46.4",
     "vite": "^5.0.0",
     "vitest": "^1.0.0"
-  },
-  "vitest": {
-    "test": {
-      "environment": "node",
-      "globals": true
-    }
   }
 }
