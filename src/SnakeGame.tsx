@@ -86,8 +86,16 @@ const SnakeGame: React.FC = () => {
     };
 
     updateBoardMetrics();
+    // Re-calculate after layout to ensure accurate dimensions
+    const layoutTimer = requestAnimationFrame(() => {
+      requestAnimationFrame(updateBoardMetrics);
+    });
+    
     window.addEventListener('resize', updateBoardMetrics);
-    return () => window.removeEventListener('resize', updateBoardMetrics);
+    return () => {
+      cancelAnimationFrame(layoutTimer);
+      window.removeEventListener('resize', updateBoardMetrics);
+    };
   }, [gridSize, baseCellSize]);
 
   useEffect(() => {
