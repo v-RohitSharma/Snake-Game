@@ -52,13 +52,7 @@ const OPPOSITES: Record<Direction, Direction> = {
 const SnakeGame: React.FC = () => {
   const [boardPreset, setBoardPreset] = useState<BoardPreset>('classic');
   const gridSize = BOARD_PRESETS[boardPreset].grid;
-  const baseCellSize = BOARD_PRESETS[boardPreset].cellSize;
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const boardSlotRef = useRef<HTMLDivElement | null>(null);
-  const [{ boardSize, cellSize }, setBoardMetrics] = useState<{ boardSize: number; cellSize: number }>(() => ({
-    boardSize: gridSize * baseCellSize,
-    cellSize: baseCellSize,
-  }));
 
   const [snake, setSnake] = useState<Point[]>(() => INITIAL_SNAKE);
   const [food, setFood] = useState<Point>(() => {
@@ -76,35 +70,10 @@ const SnakeGame: React.FC = () => {
   const [running, setRunning] = useState(true);
 
   useEffect(() => {
-    const updateBoardMetrics = () => {
-      const slotWidth = boardSlotRef.current?.clientWidth ?? window.innerWidth;
-      const maxBoardSize = Math.min(slotWidth, window.innerHeight * 0.72);
-      const targetSize = Math.min(gridSize * baseCellSize, maxBoardSize);
-      const nextCellSize = Math.max(24, Math.floor(targetSize / gridSize));
-      const nextBoardSize = nextCellSize * gridSize;
-      setBoardMetrics({ boardSize: nextBoardSize, cellSize: nextCellSize });
-    };
-
-    updateBoardMetrics();
-    // Re-calculate after layout to ensure accurate dimensions
-    const layoutTimer = requestAnimationFrame(() => {
-      requestAnimationFrame(updateBoardMetrics);
-    });
-    
-    window.addEventListener('resize', updateBoardMetrics);
-    return () => {
-      cancelAnimationFrame(layoutTimer);
-      window.removeEventListener('resize', updateBoardMetrics);
-    };
-  }, [gridSize, baseCellSize]);
-
-  useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
     container.style.setProperty('--grid-size', String(gridSize));
-    container.style.setProperty('--cell-size', `${cellSize}px`);
-    container.style.setProperty('--board-size', `${boardSize}px`);
-  }, [gridSize, cellSize, boardSize]);
+  }, [gridSize]);
 
   // keep runningRef in sync with state and reset lastRef when resuming
   useEffect(() => {
@@ -244,7 +213,7 @@ const SnakeGame: React.FC = () => {
         </div>
       )}
 
-      <div className="board-slot" ref={boardSlotRef}>
+      <div className="board-slot">
         <div className="board" tabIndex={0}>
           {Array.from({ length: totalCells }, (_, index) => {
             const row = Math.floor(index / gridSize);

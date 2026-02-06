@@ -1,66 +1,329 @@
 #root {
+  width: 100%;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* Snake game styles */
+/* DESKTOP: 3-Column Layout (1200px and above) */
 .game-container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto 1fr auto;
-  gap: 24px;
-  max-width: 2200px;
-  width: 100%;
-  max-height: 100vh;
-  padding: 1.5rem;
-  overflow: hidden;
+  gap: 16px;
+  width: min(95vw, calc(100vw - 2rem));
+  max-width: calc(100vh * 1.8);
+  padding: 1rem;
   animation: slideUp 0.5s ease-out;
+  box-sizing: border-box;
+  max-height: 95vh;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-@media (max-height: 900px) or (max-width: 1100px) {
+/* TABLET: 2-Column Layout (768px - 1199px) */
+@media (max-width: 1199px) {
   .game-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 14px;
+    width: 96vw;
+    max-width: 1200px;
+    height: auto;
+    padding: 0.75rem;
+    max-height: none;
+    overflow: visible;
   }
 
   .game-header {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding: 8px 10px;
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
   }
-  
-  .board-slot {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  
-  .game-stats {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  
-  .game-status {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  
+
   .controls-section {
     grid-column: 1;
-    grid-row: auto;
+    grid-row: 2;
+    height: auto;
+    max-height: none;
+    padding: 12px;
+    gap: 10px;
+    overflow-y: auto;
+  }
+
+  .speed-control label {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+
+  .speed-control select {
+    padding: 10px 12px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    min-height: 40px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    min-height: 42px;
+    gap: 6px;
+  }
+
+  .button-group {
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .board-slot {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    height: auto;
+    min-height: 280px;
+    max-height: 500px;
+  }
+
+  .game-stats {
+    grid-column: 1;
+    grid-row: 3;
+    height: auto;
+    max-height: none;
+    gap: 8px;
+    overflow-y: auto;
+    padding-right: 0;
+  }
+
+  .stat-card {
+    padding: 10px 8px;
+    min-height: 70px;
+  }
+
+  .stat-card label {
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    margin-bottom: 3px;
+  }
+
+  .stat-value {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+  }
+
+  .game-status {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+  }
+}
+
+/* MOBILE: Single Column Layout (below 768px) */
+@media (max-width: 767px) {
+  .game-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    padding: 0.5rem;
+    max-height: none;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .game-header {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 8px 10px;
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+
+  .game-title {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  .game-subtitle {
+    font-size: 0.8rem;
+    margin: 3px 0 0 0;
+  }
+
+  .board-slot {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: auto;
+    max-height: 65vh;
+    min-height: 250px;
+  }
+
+  .controls-section {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 10px;
+    gap: 10px;
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .speed-control {
+    gap: 8px;
+  }
+
+  .speed-control label {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+  }
+
+  .speed-control select {
+    padding: 9px 10px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    min-height: 38px;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    min-height: 40px;
+    gap: 6px;
+  }
+
+  .game-stats {
+    grid-column: 1;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .stat-card {
+    padding: 8px 6px;
+    min-height: 60px;
+  }
+
+  .stat-card label {
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .game-status {
+    grid-column: 1;
+    grid-row: 5;
+    padding: 8px;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+  }
+}
+
+/* SMALL MOBILE: Extra small adjustments (below 480px) */
+@media (max-width: 479px) {
+  .game-container {
+    padding: 0.35rem;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .game-header {
+    padding: 6px 8px;
+  }
+
+  .game-title {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .game-subtitle {
+    font-size: 0.7rem;
+    margin: 2px 0 0 0;
+  }
+
+  .board-slot {
+    max-height: 60vh;
+    min-height: 220px;
+  }
+
+  .controls-section {
+    padding: 8px;
+    gap: 8px;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .speed-control label {
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+  }
+
+  .speed-control select {
+    padding: 8px 8px;
+    font-size: clamp(0.75rem, 2vw, 0.8rem);
+    min-height: 36px;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-top: 0;
+  }
+
+  .btn {
+    padding: 8px 10px;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+    min-height: 36px;
+    gap: 4px;
+  }
+
+  .game-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .stat-card {
+    padding: 6px 4px;
+    min-height: 55px;
+  }
+
+  .stat-card label {
+    font-size: 0.65rem;
+    margin-bottom: 2px;
+  }
+
+  .stat-value {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+
+  .game-status {
+    padding: 6px;
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
   }
 }
 
@@ -77,29 +340,34 @@ body {
 
 .game-header {
   grid-column: 2;
+  grid-row: 1;
   text-align: center;
   color: white;
-  padding: 14px 18px;
+  padding: 8px 12px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  justify-self: center;
-  max-width: min(100%, var(--board-size, 960px));
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .game-title {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
   font-weight: 700;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  line-height: 1;
 }
 
 .game-subtitle {
-  margin: 6px 0 0 0;
-  font-size: 1rem;
+  margin: 4px 0 0 0;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
   opacity: 0.9;
   color: rgba(255, 255, 255, 0.8);
 }
@@ -112,6 +380,25 @@ body {
   padding: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   animation: fadeIn 0.3s ease-out;
+  overflow: hidden;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .instructions-panel {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .instructions-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .instruction-item {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
 }
 
 @keyframes fadeIn {
@@ -192,15 +479,27 @@ body {
   gap: 10px;
   grid-column: 3;
   grid-row: 2;
+  width: 100%;
+  height: 100%;
+  align-content: start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0;
+  box-sizing: border-box;
 }
 
 .stat-card {
   background: white;
   border-radius: 12px;
-  padding: 18px;
+  padding: 12px 10px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s, box-shadow 0.2s;
+  min-height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .stat-card:hover {
@@ -210,16 +509,16 @@ body {
 
 .stat-card label {
   display: block;
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
   color: #999;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
-  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
 }
 
 .stat-value {
-  font-size: 2.4rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 700;
   color: #667eea;
   line-height: 1;
@@ -227,14 +526,15 @@ body {
 
 /* Game Status */
 .game-status {
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
   text-align: center;
   font-weight: 600;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
   grid-column: 2;
   grid-row: 3;
+  width: 100%;
 }
 
 .game-status[data-status="running"] {
@@ -270,16 +570,16 @@ body {
   letter-spacing: 1px;
 }
 
-/* Board (renders only segments + food as absolute squares) */
 .board-slot {
   grid-column: 2;
   grid-row: 2;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  min-width: 0;
+  align-items: center;
   width: 100%;
-  max-width: 100%;
+  height: 100%;
+  min-height: 200px;
+  overflow: hidden;
 }
 
 .board {
@@ -290,12 +590,13 @@ body {
   touch-action: none;
   border: 4px solid #667eea;
   overflow: hidden;
-  width: min(100%, var(--board-size, 480px));
+  width: 100%;
+  max-width: min(100%, calc(95vh - 250px));
   height: auto;
   aspect-ratio: 1;
   display: grid;
-  grid-template-columns: repeat(var(--grid-size, 10), var(--cell-size, 40px));
-  grid-template-rows: repeat(var(--grid-size, 10), var(--cell-size, 40px));
+  grid-template-columns: repeat(var(--grid-size, 10), 1fr);
+  grid-template-rows: repeat(var(--grid-size, 10), 1fr);
 }
 
 .board:focus {
@@ -306,8 +607,8 @@ body {
 
 
 .cell {
-  width: var(--cell-size, 40px);
-  height: var(--cell-size, 40px);
+  width: 100%;
+  height: 100%;
   position: relative;
   box-sizing: border-box;
 }
@@ -417,38 +718,44 @@ body {
   }
 }
 
-/* Controls Section */
 .controls-section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   background: white;
-  padding: 20px;
+  padding: 14px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   grid-column: 1;
   grid-row: 2;
+  width: 100%;
+  height: 100%;
   align-self: start;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .speed-control {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
+    gap: 10px;
 }
 
 .speed-control label {
   font-weight: 600;
   color: #333;
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  margin-bottom: 2px;
 }
 
 .speed-control select {
   padding: 10px 14px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
   background: white;
   color: #333;
   cursor: pointer;
@@ -457,11 +764,12 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding-right: 32px;
+  padding-right: 34px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 18px;
+  min-height: 44px;
 }
 
 .speed-control select:hover {
@@ -478,14 +786,15 @@ body {
 .button-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 10px;
+  margin-top: 6px;
 }
 
 .btn {
-  padding: 12px 18px;
+  padding: 12px 14px;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -532,7 +841,6 @@ body {
     background: #e8e8e8;
 }
 
-/* Game Over Panel */
 .game-over-panel {
     background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
     border: 2px solid #f44336;
@@ -542,6 +850,8 @@ body {
     box-shadow: 0 8px 24px rgba(244, 67, 54, 0.2);
     animation: slideUp 0.5s ease-out;
     grid-column: 1 / -1;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .game-over-panel h2 {
