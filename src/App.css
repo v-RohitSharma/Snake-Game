@@ -1,3 +1,4 @@
+/* Global layout for the game container and responsive breakpoints. */
 #root {
   width: 100%;
   min-height: 100vh;
@@ -35,296 +36,6 @@ body {
   max-height: 95vh;
   overflow: hidden;
   box-sizing: border-box;
-}
-
-/* TABLET: 2-Column Layout (768px - 1199px) */
-@media (max-width: 1199px) {
-  .game-container {
-    grid-template-columns: 1fr 1.5fr;
-    grid-template-rows: auto auto auto auto;
-    gap: 14px;
-    width: 96vw;
-    max-width: 1200px;
-    height: auto;
-    padding: 0.75rem;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .game-header {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    padding: 8px 10px;
-    font-size: clamp(1.3rem, 4vw, 1.6rem);
-  }
-
-  .controls-section {
-    grid-column: 1;
-    grid-row: 2;
-    height: auto;
-    max-height: none;
-    padding: 12px;
-    gap: 10px;
-    overflow-y: auto;
-  }
-
-  .speed-control label {
-    font-size: clamp(0.9rem, 2vw, 1rem);
-  }
-
-  .speed-control select {
-    padding: 10px 12px;
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
-    min-height: 40px;
-  }
-
-  .btn {
-    padding: 10px 12px;
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
-    min-height: 42px;
-    gap: 6px;
-  }
-
-  .button-group {
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .board-slot {
-    grid-column: 2;
-    grid-row: 2 / 4;
-    height: auto;
-    min-height: 280px;
-    max-height: 500px;
-  }
-
-  .game-stats {
-    grid-column: 1;
-    grid-row: 3;
-    height: auto;
-    max-height: none;
-    gap: 8px;
-    overflow-y: auto;
-    padding-right: 0;
-  }
-
-  .stat-card {
-    padding: 10px 8px;
-    min-height: 70px;
-  }
-
-  .stat-card label {
-    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
-    margin-bottom: 3px;
-  }
-
-  .stat-value {
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
-  }
-
-  .game-status {
-    grid-column: 1 / -1;
-    grid-row: 4;
-    font-size: clamp(0.75rem, 2vw, 0.9rem);
-  }
-}
-
-/* MOBILE: Single Column Layout (below 768px) */
-@media (max-width: 767px) {
-  .game-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto;
-    gap: 8px;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    padding: 0.5rem;
-    max-height: none;
-    overflow: visible;
-    box-sizing: border-box;
-  }
-
-  .game-header {
-    grid-column: 1;
-    grid-row: 1;
-    padding: 8px 10px;
-    font-size: clamp(1.2rem, 5vw, 1.5rem);
-  }
-
-  .game-title {
-    font-size: 1.4rem;
-    margin: 0;
-  }
-
-  .game-subtitle {
-    font-size: 0.8rem;
-    margin: 3px 0 0 0;
-  }
-
-  .board-slot {
-    grid-column: 1;
-    grid-row: 2;
-    width: 100%;
-    height: auto;
-    max-height: 65vh;
-    min-height: 250px;
-  }
-
-  .controls-section {
-    grid-column: 1;
-    grid-row: 3;
-    padding: 10px;
-    gap: 10px;
-    height: auto;
-    max-height: none;
-    overflow-y: visible;
-  }
-
-  .speed-control {
-    gap: 8px;
-  }
-
-  .speed-control label {
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
-  }
-
-  .speed-control select {
-    padding: 9px 10px;
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
-    min-height: 38px;
-  }
-
-  .button-group {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin-top: 2px;
-  }
-
-  .btn {
-    padding: 10px 12px;
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
-    min-height: 40px;
-    gap: 6px;
-  }
-
-  .game-stats {
-    grid-column: 1;
-    grid-row: 4;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    width: 100%;
-    height: auto;
-    overflow-y: visible;
-  }
-
-  .stat-card {
-    padding: 8px 6px;
-    min-height: 60px;
-  }
-
-  .stat-card label {
-    font-size: 0.7rem;
-    margin-bottom: 3px;
-  }
-
-  .stat-value {
-    font-size: 1.4rem;
-  }
-
-  .game-status {
-    grid-column: 1;
-    grid-row: 5;
-    padding: 8px;
-    font-size: clamp(0.75rem, 2vw, 0.85rem);
-  }
-}
-
-/* SMALL MOBILE: Extra small adjustments (below 480px) */
-@media (max-width: 479px) {
-  .game-container {
-    padding: 0.35rem;
-    gap: 6px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .game-header {
-    padding: 6px 8px;
-  }
-
-  .game-title {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-
-  .game-subtitle {
-    font-size: 0.7rem;
-    margin: 2px 0 0 0;
-  }
-
-  .board-slot {
-    max-height: 60vh;
-    min-height: 220px;
-  }
-
-  .controls-section {
-    padding: 8px;
-    gap: 8px;
-    height: auto;
-    overflow-y: visible;
-  }
-
-  .speed-control label {
-    font-size: clamp(0.75rem, 2vw, 0.85rem);
-  }
-
-  .speed-control select {
-    padding: 8px 8px;
-    font-size: clamp(0.75rem, 2vw, 0.8rem);
-    min-height: 36px;
-  }
-
-  .button-group {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    margin-top: 0;
-  }
-
-  .btn {
-    padding: 8px 10px;
-    font-size: clamp(0.75rem, 2vw, 0.85rem);
-    min-height: 36px;
-    gap: 4px;
-  }
-
-  .game-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-    width: 100%;
-    height: auto;
-    overflow-y: visible;
-  }
-
-  .stat-card {
-    padding: 6px 4px;
-    min-height: 55px;
-  }
-
-  .stat-card label {
-    font-size: 0.65rem;
-    margin-bottom: 2px;
-  }
-
-  .stat-value {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-  }
-
-  .game-status {
-    padding: 6px;
-    font-size: clamp(0.65rem, 2vw, 0.75rem);
-  }
 }
 
 @keyframes slideUp {
@@ -579,7 +290,8 @@ body {
   width: 100%;
   height: 100%;
   min-height: 200px;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
 }
 
 .board {
@@ -884,4 +596,370 @@ body {
     color: #b71c1c !important;
     font-size: 0.95rem;
     font-style: italic;
+}
+
+/* D-PAD: Touch Controls for Mobile/Touch Devices */
+.dpad-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+/* Show D-pad when touch device is detected by React */
+.game-container[data-touch-device="true"] .dpad-container {
+  display: flex;
+}
+
+/* Hide on non-touch devices */
+.game-container[data-touch-device="false"] .dpad-container {
+  display: none;
+}
+
+.dpad-middle {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.dpad-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  border: 2px solid #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpad-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.2);
+}
+
+.dpad-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+@media (max-width: 479px) {
+  .dpad-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+
+  .dpad-container {
+    bottom: 8px;
+    right: 8px;
+    gap: 6px;
+    padding: 12px;
+  }
+}
+
+
+/* TABLET: 2-Column Layout (768px - 1199px) */
+@media (max-width: 1199px) {
+  .game-container {
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 14px;
+    width: 96vw;
+    max-width: 1200px;
+    height: auto;
+    padding: 0.75rem;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .game-header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding: 8px 10px;
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+  }
+
+  .controls-section {
+    grid-column: 1;
+    grid-row: 2;
+    height: auto;
+    max-height: none;
+    padding: 12px;
+    gap: 10px;
+    overflow-y: auto;
+  }
+
+  .speed-control label {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+
+  .speed-control select {
+    padding: 10px 12px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    min-height: 40px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    min-height: 42px;
+    gap: 6px;
+  }
+
+  .button-group {
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .board-slot {
+    grid-column: 2;
+    grid-row: 2 / 4;
+    height: auto;
+    min-height: 280px;
+    max-height: 500px;
+  }
+
+  .game-stats {
+    grid-column: 1;
+    grid-row: 3;
+    height: auto;
+    max-height: none;
+    gap: 8px;
+    overflow-y: auto;
+    padding-right: 0;
+  }
+
+  .stat-card {
+    padding: 10px 8px;
+    min-height: 70px;
+  }
+
+  .stat-card label {
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    margin-bottom: 3px;
+  }
+
+  .stat-value {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+  }
+
+  .game-status {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+  }
+}
+
+/* MOBILE: Single Column Layout (below 768px) */
+@media (max-width: 767px) {
+  .game-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    padding: 0.5rem;
+    max-height: none;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .game-header {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 8px 10px;
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+
+  .game-title {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  .game-subtitle {
+    font-size: 0.8rem;
+    margin: 3px 0 0 0;
+  }
+
+  .board-slot {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: auto;
+    max-height: 65vh;
+    min-height: 250px;
+  }
+
+  .controls-section {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 10px;
+    gap: 10px;
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .speed-control {
+    gap: 8px;
+  }
+
+  .speed-control label {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+  }
+
+  .speed-control select {
+    padding: 9px 10px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    min-height: 38px;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .btn {
+    padding: 10px 12px;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    min-height: 40px;
+    gap: 6px;
+  }
+
+  .game-stats {
+    grid-column: 1;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .stat-card {
+    padding: 8px 6px;
+    min-height: 60px;
+  }
+
+  .stat-card label {
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .game-status {
+    grid-column: 1;
+    grid-row: 5;
+    padding: 8px;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+  }
+}
+
+/* SMALL MOBILE: Extra small adjustments (below 480px) */
+@media (max-width: 479px) {
+  .game-container {
+    padding: 0.35rem;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .game-header {
+    padding: 6px 8px;
+  }
+
+  .game-title {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .game-subtitle {
+    font-size: 0.7rem;
+    margin: 2px 0 0 0;
+  }
+
+  .board-slot {
+    max-height: 60vh;
+    min-height: 220px;
+  }
+
+  .controls-section {
+    padding: 8px;
+    gap: 8px;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .speed-control label {
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+  }
+
+  .speed-control select {
+    padding: 8px 8px;
+    font-size: clamp(0.75rem, 2vw, 0.8rem);
+    min-height: 36px;
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-top: 0;
+  }
+
+  .btn {
+    padding: 8px 10px;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+    min-height: 36px;
+    gap: 4px;
+  }
+
+  .game-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .stat-card {
+    padding: 6px 4px;
+    min-height: 55px;
+  }
+
+  .stat-card label {
+    font-size: 0.65rem;
+    margin-bottom: 2px;
+  }
+
+  .stat-value {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+  }
+
+  .game-status {
+    padding: 6px;
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
+  }
 }

@@ -1,3 +1,4 @@
+/* Global base styles for the app shell. */
 html, body, #root {
   height: auto;
   min-height: 100vh;

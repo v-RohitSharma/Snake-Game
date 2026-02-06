@@ -2,15 +2,19 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import SnakeGame from './SnakeGame';
 
+// Clean persisted state between tests.
 beforeEach(() => {
   localStorage.clear();
 });
 
+// Component-level behavior tests for the UI.
 describe('SnakeGame', () => {
   it('renders header and subtitle', () => {
     render(<SnakeGame />);
     expect(screen.getByText(/Snake Game/i)).toBeInTheDocument();
-    expect(screen.getByText(/Arrow keys to move/i)).toBeInTheDocument();
+    // Subtitle text varies based on touch device detection
+    const subtitle = screen.getByText(/Navigate, eat, and grow/i);
+    expect(subtitle).toBeInTheDocument();
   });
 
   it('shows initial stats', () => {

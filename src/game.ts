@@ -1,10 +1,15 @@
+// Core game primitives: grid coordinates and movement directions.
 export type Point = [number, number];
 export type Direction = 'RIGHT' | 'LEFT' | 'UP' | 'DOWN';
 
+// Board size presets used by the UI.
 export const CLASSIC_GRID = 10;
 export const LARGE_GRID = 20;
+
+// Stable key for Set/Map lookups.
 export const keyOf = (p: Point) => `${p[0]},${p[1]}`;
 
+// Place food on any unoccupied cell.
 export function randPointExcluding(exclude: Set<string>, gridSize: number = CLASSIC_GRID): Point {
   const max = gridSize * gridSize;
   if (exclude.size >= max) throw new Error('No available points to place food');
@@ -15,6 +20,7 @@ export function randPointExcluding(exclude: Set<string>, gridSize: number = CLAS
   }
 }
 
+// Advance the snake one tick and report outcomes for UI state updates.
 export function stepSnake(prev: Point[], dir: Direction, food: Point, gridSize: number = CLASSIC_GRID): { snake: Point[]; ate: boolean; collision: boolean } {
   const head = prev[0];
   let newHead: Point;

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { CLASSIC_GRID, randPointExcluding, stepSnake } from './game';
 import type { Point } from './game';
 
+// Unit tests for the pure game-logic helpers.
 describe('stepSnake', () => {
   it('moves the snake forward', () => {
     const snake: Point[] = [[0, 1], [0, 0]];
